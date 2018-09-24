@@ -5,6 +5,8 @@ This system allows p4 to be used as an engine to perform goal recognition. This 
 * Peta Masters and Sebastian Sardina. [Cost-based goal recognition for path-planning](https://dl.acm.org/citation.cfm?id=3091232). In _Proceedings of the International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)_, pages 750--758, 2017. Best Student Paper Award. 
 
 
+## USAGE NOTES
+
 
 The main script is `gr.py` is the main script. 
 Check the settings at the top of the file. Modify call at bottom of file to select quality, density, etc., and run as `python gr.py`. Outputs to nominated csv file, e.g.:
@@ -12,7 +14,6 @@ Check the settings at the top of the file. Modify call at bottom of file to sele
     recog = GR( "../maps/gr/test.gr", "../maps/gr/test_results.csv")
     recog.runBatch(OPTIMAL, SPARSE, PREFIX)
 
-## NOTES
 
 * You will need to download `.scen` and map files from [movingai.com](https://movingai.com/benchmarks/), then run `gr_probs.py` to generate a GR-compatible problem set.
     * this generates extra goals and creates a `.GR` file. Extra parameters specify number of problems and maximum number of extra goals to generate, e.g:
