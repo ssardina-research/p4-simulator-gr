@@ -2,7 +2,8 @@
 
 This system allows p4 to be used as an engine to perform goal recognition. This code has been developed for and used in the following paper:
 
-    * Peta Masters and Sebastian Sardina. [Cost-based goal recognition for path-planning](https://dl.acm.org/citation.cfm?id=3091232). In _Proceedings of the International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)_, pages 750--758, 2017. Best Student Paper Award. 
+* Peta Masters and Sebastian Sardina. [Cost-based goal recognition for path-planning](https://dl.acm.org/citation.cfm?id=3091232). In _Proceedings of the International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)_, pages 750--758, 2017. Best Student Paper Award. 
+
 
 
 The main script is `gr.py` is the main script. 
