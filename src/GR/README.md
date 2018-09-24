@@ -1,6 +1,9 @@
 # Goal Recogntion (GR) System for p4 
 
-This system allows p4 to be used as an engine to perform goal recognition.
+This system allows p4 to be used as an engine to perform goal recognition. This code has been developed for and used in the following paper:
+
+    * Peta Masters and Sebastian Sardina. [Cost-based goal recognition for path-planning](https://dl.acm.org/citation.cfm?id=3091232). In _Proceedings of the International Conference on Autonomous Agents and Multi-Agent Systems (AAMAS)_, pages 750--758, 2017. Best Student Paper Award. 
+
 
 The main script is `gr.py` is the main script. 
 Check the settings at the top of the file. Modify call at bottom of file to select quality, density, etc., and run as `python gr.py`. Outputs to nominated csv file, e.g.:
