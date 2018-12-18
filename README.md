@@ -1,4 +1,4 @@
-# p4 - Python Path Planning Project
+# p4 - Python Path Planning Project (Fork for Goal Recognition and Deception in Path Planning)
 
 
 [p4 (aka the "Python Path Planning Project")](https://bitbucket.org/ssardina/soft-p4-sim-core) is a Python-based path planning framework and simulator, useful to prototype, evaluate, and benchmark path planning algoritms. The system began as a Python version of the Java-based [APPARATE path-planning simulator](https://bitbucket.org/ssardina-research/apparate-simulator) to be able to prototype algorithms in a "lighter" programming language. It started as part of Peta Master's 2013 programming course project and then extended to support her Honours thesis and doctorate program, under the supervision of A/Prof. Sebastian Sardina.
