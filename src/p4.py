@@ -62,6 +62,7 @@ parser.add_argument('-realtime', action='store_true', dest='REALTIME', default=F
 parser.add_argument('-batch', nargs='*', dest='BATCH', action='store',
                     help="run scenario in batch mode. Requires .scen file and .csv file for results. Optionally takes "
                          "integer as 3rd argument for number of repetitions across which test times are to be averaged.")
+parser.add_argument('-G', action='store', dest='POSS_GOALS', default=[], help="array of possible goal locations")
 args = parser.parse_args()
 
 # If batch mode, then check scenario and agent files are supplied, extract map path from path of scenario file

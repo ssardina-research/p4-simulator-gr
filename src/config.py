@@ -16,15 +16,15 @@
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 
-AGENT_FILE = "agent_astar"       #agent filename - must be in src/agents/
+AGENT_FILE = "agent_ds1"       #agent filename - must be in src/agents/
 #AGENT_FILE = "agent_random"     #agent filename - must be in src/agents/
-MAP_FILE  = "../maps/bloodvenomfalls.map" 	#map filename - must be in maps (sister dir to src)
-START     = (128,405)            #coordinates of start location in (col,row) format
-GOAL      = (409,93)             #coordinates of goal location in (col,row) format
+MAP_FILE  = "AR0044SR.map"   	#map filename - must be in maps (sister dir to src)
+START     = (350,122)           #coordinates of start location in (col,row) format
+GOAL      = (324,57)            #coordinates of goal location in (col,row) format
 
 GUI = True                      #True = show GUI, False = run on command line
 SPEED = 0.0                     #delay between displayed moves in seconds
-DEADLINE = 15                   #Number of seconds to reach goal
+DEADLINE = 100                   #Number of seconds to reach goal
 HEURISTIC = 'octile'            #may be 'euclid' or 'manhattan' or 'octile' (default = 'euclid')
 DIAGONAL = True                 #Only allows 4-way movement when False (default = True)
 FREE_TIME = 0.000               #Step times > FREE_TIME are timed iff REALTIME = True
@@ -33,4 +33,4 @@ STRICT = True                   #Allows traversal of impassable cells when False
 PREPROCESS = False              #Gives agent opportunity to preprocess map (default = False)
 #COST_MODEL = 'mixed_real'      #May be 'mixed' (default), 'mixed_real', 'mixed_opt1' or 'mixed_opt2'
 COST_FILE = "../costs/G1-W5-S10.cost"
-
+POSS_GOALS = [(384,56),(220,161),(169,341),(410,424)]

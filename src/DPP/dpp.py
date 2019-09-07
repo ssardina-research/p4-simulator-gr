@@ -10,7 +10,7 @@ DS2 = "agent_ds2"
 DS3 = "agent_ds3"
 DS4 = "agent_ds4"
 
-MAP_PATH = "../maps/baldurs/"
+MAP_PATH = "../maps/gr/"
 AGENT_PATH = "./agents/"
 MAX_GOALS = 4
 #TIME_OUT = 180  #seconds
@@ -68,7 +68,7 @@ class DPP(object):
         #Directly modify prior to run - e.g. limit to one quality, one density, etc.
         densities = (10,25,50,75,90,99)    #percentage of path
         #strategyNums = (0,1,2,3,4)        #strategy zero is Astar
-        strategyNums = (0,)                #strategy zero is Astar       
+        strategyNums = (1,2)                #strategy zero is Astar       
         
         with open(self.infile, 'r') as f:
             reader = csv.reader(f)
@@ -167,6 +167,6 @@ class DPP(object):
         sys.exit(1)
         
 if __name__ == '__main__':
-    recog = DPP( "../maps/baldurs/dpp_dataset.GR", "../maps/baldurs/dpp_dataset.rmp")
+    recog = DPP( "../maps/gr/sample_dpp.GR", "../maps/gr/sample_dpp.csv")
     recog.runBatch()
 

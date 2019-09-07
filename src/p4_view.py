@@ -75,6 +75,22 @@ class Gui(Tkinter.Tk):
         self.vmap.drawCross(goal, p4.COL_GOAL)
         self.goal = goal  #position is saved, so it can be cleared
         
+    def setPossGoals(self, goals):
+        """draws and remembers extra goals"""
+        try:
+            self.possGoals = goals
+            for g in goals:
+                self.vmap.drawCross(g, p4.COL_GOAL)
+        except:
+            pass
+        
+    def clearPossGoals(self):
+        try:
+            for g in self.possGoals:
+                self.vmap.clearCross(g, self.lmap)
+        except:
+            pass
+            
     def clearPoints(self, pointlist):
         """sends list of points to vmap to be redrawn/cleared 
         based on current lmap"""

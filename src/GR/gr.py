@@ -27,10 +27,10 @@ DENSE = 80
 PREFIX = 0
 RANDOM = 1
 
-OBS_AGENT = "agent_wa"
+OBS_AGENT = "agent_wa"	#generates observations
 #OBS_AGENT = "agent_rta"
 #GR_AGENT = "gr_agent_ramirez"
-GR_AGENT = "gr_agent"
+GR_AGENT = "gr_agent"	#calculates probabilities
 
 MAP_PATH = "../maps/gr/"
 MAX_GOALS = 7
@@ -202,5 +202,5 @@ class GoalObj(object):
         
 if __name__ == '__main__':
 
-    recog = GR( "../maps/gr/rooms.GR", "./tests/rooms_gdy.csv")
-    recog.runBatch(GREEDY)
+    recog = GR( "../maps/gr/sample.GR", "../maps/gr/sample.csv")
+    recog.runBatch(GREEDY, SPARSE, RANDOM)

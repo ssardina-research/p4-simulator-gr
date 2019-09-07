@@ -18,6 +18,7 @@
 from math import fabs, sqrt 
 from random import randint
 from collections import deque
+from heapq import heappush, heappop
 import p4_utils as p4
 
 
@@ -245,6 +246,8 @@ class LogicalMap(object):
         coord_type = self.getCell(coord)
  
         if previous:
+            if not self.isAdjacent(coord, previous):
+                return float('inf')
             isDiagonalMove = self.isDiag(previous, coord)
             if isDiagonalMove and self.cutsCorner(previous, coord, keys):
                 return float('inf')
@@ -519,3 +522,51 @@ class LogicalMap(object):
         :rtype: float
         """
         return sum([self.getCost(path[i],path[i-1]) for i in range(len(path))[1:]])
+
+    def optCost(self, a, b):
+        return self.optPath(a, b, 0)
+        
+    def optPath(self, a, b, mode=1):
+        """returns optimal cost (mode 0), path (mode 1) or cost and path (mode2), 
+           using A star"""     
+        if a == b:
+            return []     # 0 steps, empty self.path
+
+        path = []          # path as list of coordinates
+        closedlist = {}    # dictionary of expanded nodes - key=coord, data = node
+        openlist = []      # heap as pqueue on f_val
+        
+        # initialise openlist with a
+        # node = (f, g, coord, parent)  and a has g=0 and f = h and no parent
+        heappush(openlist, (self.getH(a, b), 0, a, None))
+
+        while openlist:
+            # pop best node from open list (lowest f)
+            node = heappop(openlist)
+            current_f, current_g, current, parent = node
+            if current in closedlist or current_g == float('inf'):
+                continue # node has to be ignored: blocked or already visited
+
+            # add node to closelist
+            closedlist[current] = node
+
+            # goal reached?
+            if current == b:
+                if not mode: return current_g   #only cost required
+                path = [current]
+                while not current == a:
+                    current = closedlist[current][p4.P_POS]
+                    path.insert(0, current)
+                if mode == 1: 
+                    return path
+                else:   #mode=2
+                    return current_g, path 
+                
+            # expand current node by getting all successors and adding them to open list
+            adjacents = (self.getAdjacents(current))
+            for adj in adjacents:
+                adjg = current_g + self.getCost(adj, current)
+                adjf = adjg + self.getH(adj, b)
+                adjnode = (adjf, adjg, adj, current)
+                if adj not in closedlist:
+                    heappush(openlist, adjnode)

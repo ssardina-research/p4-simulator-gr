@@ -258,6 +258,7 @@ class SimController(object):
         self.gui = Gui(self, self.lmap)
         self.gui.setStart(self.cfg["START"])
         self.gui.setGoal(self.cfg["GOAL"])
+        self.gui.setPossGoals(self.cfg["POSS_GOALS"])
         self.updateStatus("OK")
         self.gui.mainloop()
 
@@ -455,6 +456,7 @@ class SimController(object):
 
         self.gui.setStart(self.cfg["START"])
         self.gui.setGoal(self.cfg["GOAL"])
+        self.gui.setPossGoals(self.cfg["POSS_GOALS"])
         if self.keptpath:
             self.gui.vmap.drawSet(self.keptpath, "orange")
         self.gui.cancelWorkings()
@@ -559,6 +561,9 @@ class SimController(object):
 
         else:
             self.processPrefs()
+            #clear poss goals, if any
+            self.gui.clearPossGoals()
+            self.cfg["POSS_GOALS"] = None
             # generate random start and goal coordinates
             x = y = None
             while x == y:  # make sure start != goal
@@ -594,6 +599,11 @@ class SimController(object):
             self.gui.clearGoal()
             self.gui.setGoal(self.cfg["GOAL"])
             self.updateStatus("Goal moved to " + str(self.cfg["GOAL"]))
+            
+    def setPossGoals(self, goals):
+        if self.gui is not None:
+            self.gui.clearPossGoals()
+            self.gui.setPossGoals(goals)
 
     def loadAgent(self, agentpath):
         """Menu handler: Search - Load Agent. Loads agent based on openfiledialog in
@@ -609,6 +619,11 @@ class SimController(object):
             # create Agent and pass in current config settings
             self.agent = agentmod.Agent()
             self.agent.reset()
+            #TODO: replace this by passing as kwargs
+            try:
+                self.agent.setGoals(self.cfg["POSS_GOALS"])
+            except:
+                pass
 
             self.updateStatus("Initialised " + agentfile)
         except:

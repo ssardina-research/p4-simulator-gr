@@ -46,22 +46,10 @@ class Agent(object):
         print "getting workings"
         return ((self.path2, "yellow"),)
         
-    def getFullPath(self, mapref, start, goal, poss_goals, heatmap):
-        #returns cost and path
-        all_goal_coords = [goal] + poss_goals
-        goal_obs = d.generateGoalObs(mapref, start, all_goal_coords)
-        rmp, argmin = d.rmp(mapref, start, goal_obs)
-        target = d.findTarget(mapref, rmp, argmin, goal, heatmap)        
         
-        cost1, path1 = self.customAstar(mapref, start, target, heatmap, True)
-        cost2, path2  = mapref.optPath(target, goal, 2)
-
-        return cost1 + cost2, path1[1:] + path2[1:]
-        
-        
-    def customAstar(self, model, start, target, heatmap, mode = False):
-        #start = self.start
-        #model = self.mapref
+    def customAstar(self, target, heatmap):   
+        start = self.start
+        model = self.mapref
         if start == target:
             return []     # 0 steps, empty self.path
 
@@ -90,10 +78,7 @@ class Agent(object):
                 while not current == start:
                     current = closedlist[current][p4.P_POS]
                     path.insert(0, current)
-                if mode:
-                    return current_g, path
-                else:
-                    return path
+                return path
                 
             # expand current node by getting all successors and adding them to open list
             adjacents = (model.getAdjacents(current))
@@ -106,7 +91,7 @@ class Agent(object):
                     #print "impassable"
                     continue
                 if heatmap.checkNode(adj):
-                    #print adj, "pruned"
+                    print adj, "pruned"
                     pruned.append(adj)
                     continue
                 adjg = current_g + model.getCost(adj, current)

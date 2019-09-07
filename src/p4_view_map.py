@@ -69,8 +69,10 @@ class MapCanvas(Canvas):
     def colorMap(self, char):
         """Effectively a switch statement to return color based on char"""
         return {
-            '.': 'sienna',
-            'G': 'sienna',
+            #'.': 'sienna',
+            #'G': 'sienna',
+            '.': 'moccasin',
+            'G': 'moccasin',
             'O': 'black',
             '@': 'black',
             'S': 'OliveDrab1',
